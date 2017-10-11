@@ -1,0 +1,11 @@
+#bg{
+	background-image: url("/static/imges/bg.jpg");
+    background-size: 1800px 900px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.container
+{
+    background-image: url("/static/imges/bg.jpg");
+}

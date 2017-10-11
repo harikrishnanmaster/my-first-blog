@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <style type="text/css">
+
+    body {
+       background-image:  url("/static/imges/background-image.jpg");
+
+
+
+    }
+    .container {
+        background-color: #d59392;
+        background-clip: content-box;
+        background-repeat:no-repeat;
+        background-size:100%;
+         border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        margin-right: 10px;
+   margin-left: 10px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+
+
+}
+    .col-md-12 {
+        background-color: burlywood;
+
+        width: 600px;
+        margin-left: 500px;
+        margin-right: 500px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+  .well{
+   background-color: #f0ad4e;
+   width: 500px;
+   margin-right: 80px;
+   margin-left: 80px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+       border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+  }
+        .jumbotron{
+            background-color: grey;
+width: 650px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        }
+        textarea{
+            margin-left: 10px;
+            margin-right: 0px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        }
+       p{
+            font-size: 22px;
+             margin-left: 10px;
+            margin-right: 10px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+            background-color: #faf2cc;
+        }
+    .mydiv{
+            background: url("/static/imges/ban.jpg");
+       background-repeat: no-repeat;
+            background-position: center;
+           height:170px;
+            background-size: cover;
+       background-color: #0e90d2; }
+    </style>
+</head>
+<body onload="changeHashOnLoad(); ">
+<div class="mydiv">
+<form name = "form" action = "{% url "logout" %}"
+         method = "POST" >{% csrf_token %}
+  <button style="font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;  line-height: normal;  color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 0px; border: 0px solid rgb(234, 50, 111); box-shadow: rgb(69, 69, 69) 0px 0px 6px; border-radius: 90px 15px; padding: 20px 40px; cursor: pointer; background: rgb(197, 0, 0);  type = "submit"
+
+                  value = "logout" name="butn">
+
+                   <strong>login  </strong>
+
+               </button>
+</form>
+</div>
+<br><hr>
+
+
+{% for e in objects %}
+
+<div class="container">
+
+<!--<br><tr><td>post id={{e.postid}}</td></tr><br>-->
+    <tr><td> <p>{{e.post}}</p> </td> </tr><br>
+
+
+<form name = "form" action = "{% url "comment" %}"
+         method = "POST" >{% csrf_token %}
+<div class="col-md-12">
+<br>
+    <input type="hidden" name="postid" value="{{e.postid}}">
+
+              <tr>
+                <th>Comment</th>  <td><br> <textarea cols="70" rows="10" name="comment" required ></textarea></td></tr></br>
+
+                <tr><td></td><td>
+
+   <div style = "max-width:500px;">
+
+               <button style="font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;  line-height: normal;  color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 0px; border: 0px solid rgb(234, 50, 111); box-shadow: rgb(69, 69, 69) 0px 0px 6px; border-radius: 90px 15px; padding: 20px 40px; cursor: pointer; background: rgb(197, 0, 0);"onclick="myFunction()"  type = "submit"
+      value = "comment"  >
+
+                   <strong> Comment</strong>
+
+               </button>
+
+         </div>
+                    <br>
+<hr>
+
+
+
+
+
+
+
+
+{% for b in comments %}
+
+
+    {% if b.postid == e.postid %}
+
+   <b> {{b.username}}</b>
+<div class="well well-sm">
+    {{b.comment}}
+</form>
+    </div><hr>
+
+{% endif %}
+
+{% endfor %}
+
+</div>
+
+</div>
+<br>
+<hr>
+<br>
+{% endfor %}
+
+
+</body>
+</html>

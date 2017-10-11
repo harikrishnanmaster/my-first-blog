@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<title>Untitled Page</title>
+<script type = "text/javascript" >
+function changeHashOnLoad() {
+     window.location.href += "#";
+     setTimeout("changeHashAgain()", "50");
+}
+
+function changeHashAgain() {
+  window.location.href += "1";
+}
+
+var storedHash = window.location.hash;
+window.setInterval(function () {
+    if (window.location.hash != storedHash) {
+         window.location.hash = storedHash;
+    }
+}, 50);
+</script>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+    body {
+       background-image:  url("/static/imges/type.jpg");
+    }
+    .container {
+  background-image: url("/static/imges/soft.jpg");
+   background-repeat:no-repeat;
+        background-size:100%;
+}
+    .col-md-12 {
+background-color: burlywood;
+}
+    .well{
+background-color: #f0ad4e;
+}
+    </style>
+
+<meta http-equiv="refresh" content="5" >
+
+</head>
+ <body onload="changeHashOnLoad(); ">
+ <form name = "form" action = "{% url "loggedin" %}"
+         method = "POST" >{% csrf_token %}
+  <button style="font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;  line-height: normal;  color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 0px; border: 0px solid rgb(234, 50, 111); box-shadow: rgb(69, 69, 69) 0px 0px 6px; border-radius: 90px 15px; padding: 20px 40px; cursor: pointer; background: rgb(197, 0, 0);  type = "submit"
+
+                  value = "loggedin" name="butn">
+
+                   <strong>back</strong>
+
+               </button>
+</form>
+
+<div class="container">
+{% for e in objects %}
+
+
+
+    <hr>
+    <div class="well well-sm">
+<!--<tr><td>post id={{e.postid}}</td></tr>-->
+    <p>    <tr><td>{{e.post}}</td> </tr></p>
+
+<!--{% for b in comments %}
+    {% if b.postid == e.postid %}
+    <tr><td>{{b.commentid}}</td></tr>
+    <tr><td>{{b.comment}}</td> </tr>
+{% endif %}
+{% endfor %}-->
+<form name = "form" action = "{% url "deletepost" %}"
+         method = "POST" >{% csrf_token %}
+
+
+    <input type="hidden" name="postid" value="{{e.postid}}">
+
+<button style="font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal;  line-height: normal;  color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 0px; border: 0px solid rgb(234, 50, 111); box-shadow: rgb(69, 69, 69) 0px 0px 6px; border-radius: 90px 15px; padding: 20px 40px; cursor: pointer; background: rgb(197, 0, 0);"onclick="myFunction()"  type = "submit"
+        value = "deletepost"   ><span class="glyphicon glyphicon-trash"></span>
+    <strong> delete post</strong>
+</button>
+
+
+<br>
+
+
+
+
+
+
+</form>
+</div>
+{% endfor %}
+    </div>
+ <script>
+
+function myFunction() {
+    alert("post deleted ");
+}
+</script>
+ <script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

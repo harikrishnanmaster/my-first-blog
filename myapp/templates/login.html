@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<title>Untitled Page</title>
+<script type = "text/javascript" >
+function changeHashOnLoad() {
+     window.location.href += "#";
+     setTimeout("changeHashAgain()", "50");
+}
+
+function changeHashAgain() {
+  window.location.href += "1";
+}
+
+var storedHash = window.location.hash;
+window.setInterval(function () {
+    if (window.location.hash != storedHash) {
+         window.location.hash = storedHash;
+    }
+}, 50);
+</script>
+
+<head>
+	<title>login form </title>
+
+	<style type="text/css">
+		body {
+  margin:0;
+  padding:0;
+  overflow: hidden;
+  width: 100% !important;
+  box-sizing: border-box;
+  font-family:'helvetica', sans-serif;
+}
+
+.left {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/static/imges/9.jpeg");
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+
+.right {
+  width: 50%;
+  height: 100%;
+  background:none;
+  right: 0;
+  opacity: 0.83;
+  position: absolute;
+}
+
+.content {
+  width: 250px;
+  margin: 0 auto;
+  top: 25%;
+  position: absolute;
+  left: 48%;
+  margin-left: -125px;
+}
+
+.content h2 {
+  color: #03A9F4;
+  font-weight: 300;
+  font-size: 40px;
+ margin-left: 30%;
+}
+
+.right input{
+	display: block;
+	width: 100%;
+	margin: 17px auto;
+	border:0;
+	border-bottom:2px solid #e68a00;
+	padding: 13px;
+  font-size: 17px;
+	outline:0;
+}
+
+.right button {
+	background-color: #e6faff;
+	color: #00ccff;
+	font:600 16px sans-serif;
+	width: 124%;
+	padding:15px;
+	outline:0;
+	border:0px;
+	margin-top:10px;
+	border-radius:3px;
+
+}
+
+.right button:hover {
+  background:#e6faff ;
+  box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.right input {
+	background: #eee;
+	padding-left: 45px;
+}
+
+
+.right input[name="username"] {
+	background: transparent url("http://oi59.tinypic.com/e7mr0z.jpg") no-repeat;
+	background-position: 10px 50%;
+	color:#ffffff;
+	font:750 21px helvetica;
+}
+
+.right input[name="password"] {
+	background: transparent url("http://oi60.tinypic.com/os92eo.jpg") no-repeat;
+	background-position: 10px 50%;
+	color:#ffffff;
+	font:750 21px helvetica;
+}
+p{
+    color: white;
+}
+
+
+	</style>
+</head>
+  <body onload="changeHashOnLoad(); ">
+
+
+
+
+
+ <!-- <form name = "form" action = "{% url "viewpost" %}"
+         method = "POST" >{% csrf_token %}
+   <div style = "max-width:500px;">
+            <center>
+
+               <button style = "border:0px; background-color:red; margin-top:8%;
+                  height:35px; width:100%; type = "submit"
+                  value = "viewpost"  >
+
+                   <strong>VIEW BLOG POSTS</strong></td></tr>
+               </button>
+            </center>
+         </div>
+   </form>-->
+
+<div class="left"></div>
+
+<!-- Right login form side -->
+<div class="right">
+  <div class="content">
+    <h2>Login </h2>
+
+   <form name = "form" action = "{% url "login" %}"
+         method = "POST" >{% csrf_token %}
+
+      <input type="text" name="username" placeholder="username" required >
+          <input type="password" name="password" placeholder="Password"  required>
+
+
+
+
+        <button type="submit" value = "login">Log In</button>
+      <br>
+
+      <a href="{% url "account" %}" class="form-create-an-account"><br><p>New user?Create an account</p>  </a>
+
+
+
+
+   </form>
+
+
+
+   </body>
+</html>
