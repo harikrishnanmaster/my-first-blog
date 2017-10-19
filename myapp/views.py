@@ -23,6 +23,7 @@ def login(request):
    comments = Comment.objects.all()
    for c in user:
        if c.name == username and c.password == password:
+           username = request.session['username']
            return render(request, 'post.html',{"username" : username,"comments" : comments,"objects" : objects})
 
    else:
@@ -30,7 +31,7 @@ def login(request):
 
    return render(request, 'index.html')
 def loggedin(request):
-    return render(request,'adminhome.html')
+    return render(request, 'login.html')
 def delete(request):
     return render(request,'delete.html')
 def deletepost(request):
@@ -302,4 +303,5 @@ def register(request):
 def account(request):
     return render(request,'register.html')
 def logout(request):
+    del request.session['username']
     return render(request,'login.html')

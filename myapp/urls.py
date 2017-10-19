@@ -26,7 +26,7 @@ urlpatterns = [
 
 
 
-
+   url(r'^loggedin/',myapp.views.loggedin, name = 'loggedin'),
    url(r'^account/',myapp.views.account, name = 'account'),
    url(r'^register/',myapp.views.register, name = 'register'),
    url(r'^logout/',myapp.views.logout, name = 'logout'),
