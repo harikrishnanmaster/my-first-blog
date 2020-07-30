@@ -36,3 +36,10 @@ Run the app:
 python3 app.py
 ```
 Open a browser at http://127.0.0.1:8080
+
+# Screenshot
+![blog.png](blog.png)
+![login.png](login.png)
+![signup.png](signup.png)
+![guest.png](guest.png)
+
